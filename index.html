@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train-Times</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css"> 
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-4 mt-4">
+            <div class="col-lg-12 top">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Current Train Schedule</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Train Name</th>
+                                <th scope="col">Destination Role</th>
+                                <th scope="col">Frequency (min)</th>
+                                <th scope="col">Next Arrival</th>
+                                <th scope="col">Minutes Away</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>Mark</td>
+                                <td>Programmer</td>
+                                <td>03/21/2018</td>
+                                <td>10</td>
+                                <td>5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 top">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Add Train</strong>
+                    </div>
+                    <div class="card-body add-employee-form">
+                        <div class="row table-header">
+                            <div class="col-lg-12">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Train Name</label>
+                                        <input type="text" class="form-control" id="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Destination</label>
+                                        <input type="text" class="form-control" id="Destination">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">First Train (HH:mm - military time)</label>
+                                        <input type="text" class="form-control" id="First">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Frequency (min)</label>
+                                        <input type="text" class="form-control" id="Frequency">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary submit" id="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+
+    <script src="assets/javascript/javascript.js"></script>
+</body>
+</html>
