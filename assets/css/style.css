@@ -1,0 +1,17 @@
+.jumbotron{
+    text-align: center;
+    background-color: rgb(200,200,200,.8);
+}
+
+.card{
+    background-color: rgb(200,200,200,.9);
+}
+
+#myVideo{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index: -10;
+}
