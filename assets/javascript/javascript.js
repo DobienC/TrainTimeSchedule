@@ -21,17 +21,25 @@ $("#submit").on("click", function(){
     var $row = $("<tr>");
     $row.append('<td>' + trainName + '</td>');
     $row.append('<td>' + destination + '</td>');
-    $row.append('<td>' + trainTime + '</td>');
     $row.append('<td>' + frequency + '</td>');
+    var minutesAway = calculateTime(frequency, trainTime);
+    trainTime = moment().add(minutesAway, "minutes").calendar();
+    $row.append('<td>' + trainTime + '</td>');
 
-    database.ref().push({
-        trainName: trainName,
-        destination: destination,
-        trainTime: trainTime,
-        frequency: frequency
-    });
-
-    $("tbody").append($row);
+    $row.append('<td>' + minutesAway + '<td>');
+    
+    if(trainName === "" || destination === "" || trainTime === "" || frequency === ""){
+        console.log("Must fill out all fields.");
+    } else {
+        database.ref().push({
+            trainName: trainName,
+            destination: destination,
+            trainTime: trainTime,
+            frequency: frequency
+        });
+    
+        // $("tbody").append($row);
+    }
 });
 
 database.ref().on("child_added", function(snapshot){ 
@@ -45,11 +53,47 @@ database.ref().on("child_added", function(snapshot){
     var $row = $("<tr>");
     $row.append('<td>' + trainName + '</td>');
     $row.append('<td>' + destination + '</td>');
-    $row.append('<td>' + trainTime + '</td>');
     $row.append('<td>' + frequency + '</td>');
+    var minutesAway = calculateTime(frequency, trainTime);
+    trainTime = moment().add(minutesAway, "minutes").calendar();
+    $row.append('<td>' + trainTime + '</td>');
+
+    $row.append('<td>' + minutesAway + '<td>');
     
+
+    // console.log(moment().add(minutesAway, 'minutes').calendar());
+
     $("tbody").append($row);
 });
-console.log(moment("01/01/2019", "MM/DD/YYYY"));
 
-console.log(moment.calendar());
+
+function calculateTime(frequency, trainTime){
+    var hours = parseInt(moment(trainTime, 'm').format('m'));
+    var minutes = parseInt(moment(trainTime,'h:mm').format('m'));
+    minutes = minutes + (hours * 60);
+    console.log("Train Time: "+minutes);
+
+    var ourHours = parseInt(moment().format('h'));
+    var ourMinutes = parseInt(moment().format('m'));
+    ourMinutes = ourMinutes + (ourHours * 60);
+    console.log("Our Time: " + ourMinutes);
+
+    var difference = minutes - ourMinutes;
+    console.log("Difference: " + difference);
+
+    var minutesAway;
+    if(difference > 0){
+        console.log("next train in: " + difference + " minutes");
+        minutesAway = difference;
+    } else {
+        var newHours = (parseInt(difference) + parseInt(frequency));
+        while(newHours < 0){
+            newHours = newHours + parseInt(frequency);
+        }
+        console.log("next train in: " + newHours + " minutes");
+        minutesAway = newHours;
+    }
+    return minutesAway;
+}
+
+// console.log(moment.calendar());
